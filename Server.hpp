@@ -3,7 +3,7 @@
 
 #include "head.hpp"
 
-void Server()
+void Server(SOCKET &s, SOCKADDR_IN &sa)
 {
     bind(s, (sockaddr *)&sa, sizeof(sa));
 
