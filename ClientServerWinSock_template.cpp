@@ -1,11 +1,22 @@
-#include "head.hpp"
+#include <iostream>
+#include <WinSock2.h>
+#include <Windows.h>
+#include <string>
+
+SOCKET s;
+
+void close()
+{
+    closesocket(s);
+}
 
 int main()
 {
+    atexit(close);
     WSADATA ws;
     WSAStartup(MAKEWORD(2, 2), &ws);
 
-    SOCKET s;
+    
     s = socket(AF_INET, SOCK_STREAM, 0);
 
     SOCKADDR_IN sa;
@@ -44,8 +55,6 @@ int main()
     }
 
     system("pause");
-
-    closesocket(s);
 
     return 0;
 }

@@ -6,4 +6,10 @@
 #include <Windows.h>
 #include <string>
 
+
+#include "ServerClient.hpp"
+#include "Server.hpp"
+#include "Client.hpp"
+
+
 #endif
