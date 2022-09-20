@@ -35,7 +35,8 @@ void Server(SOCKET &s, SOCKADDR_IN &sa, int SOCKET_COUNTERS, int TotalSockets)
     SOCKET ClientSocket;
     SOCKADDR_IN ClientAddr;
     int ClientAddrSize = sizeof(ClientAddr);
-
+    std::cout << "Server started succesful" << std::endl;
+    
     CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)CommandSend, NULL, NULL, NULL);
 
     for (int i = 0; i < SOCKET_COUNTERS; i++)

@@ -1,6 +1,6 @@
 #include "head.hpp"
 
-const int SOCKET_COUNTER = 5;
+const int SOCKET_COUNTER = 100;
 int TotalSocket = 0;
 
 SOCKET s;

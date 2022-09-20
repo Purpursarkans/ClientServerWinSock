@@ -13,7 +13,7 @@ void Client(SOCKET &s, SOCKADDR_IN &sa)
         exit(1);
     }
 
-    
+    std::cout << "Client connected successful" << std::endl;
 
     while(true)
     {
