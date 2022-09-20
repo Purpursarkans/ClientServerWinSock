@@ -17,7 +17,6 @@ void CommandSend()
         for (int i = 0; i < TotalSocket2; i++)
         {
             send(ClientSockets[i], (char *)&SockControl, sizeof(int), 0);
-            std::cout << ClientSockets[i] << std::endl;
         }
     }
 }
