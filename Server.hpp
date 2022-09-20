@@ -3,16 +3,13 @@
 
 #include "head.hpp"
 
-//const int SOCKET_COUNTERS = 5;
-//int TotalSockets = 0;
-
-int SockControl = 1;
-
 SOCKET *ClientSockets;
 int TotalSocket2;
 
 void CommandSend()
 {
+    int SockControl = 0;
+    
     while (true)
     {
         std::cout << "Enter command: ";
@@ -36,7 +33,7 @@ void Server(SOCKET &s, SOCKADDR_IN &sa, int SOCKET_COUNTERS, int TotalSockets)
     SOCKADDR_IN ClientAddr;
     int ClientAddrSize = sizeof(ClientAddr);
     std::cout << "Server started succesful" << std::endl;
-    
+
     CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)CommandSend, NULL, NULL, NULL);
 
     for (int i = 0; i < SOCKET_COUNTERS; i++)
