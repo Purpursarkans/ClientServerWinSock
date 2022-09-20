@@ -13,13 +13,19 @@ void Client(SOCKET &s, SOCKADDR_IN &sa)
         exit(1);
     }
 
-    int SockControl = 0;
+    
 
     while(true)
     {
+        int SockControl = 0;
         recv(s, (char *)&SockControl, sizeof(int), NULL);
         switch(SockControl)
         {
+            case 0:
+                std::cout << "error host" << std::endl;
+                system("pause");
+                exit(1);
+                break;
             case 1:
                 std::cout << "one" << std::endl;
                 break;
