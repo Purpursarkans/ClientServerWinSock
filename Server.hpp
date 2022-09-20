@@ -10,13 +10,27 @@ void CommandSend()
 {
     int SockControl = 0;
     
-    while (true)
+    while(true)
     {
-        std::cout << "Enter command: ";
-        std::cin >> SockControl;
-        for (int i = 0; i < TotalSocket2; i++)
+        if (TotalSocket2 > 0)
+        {   
+            system("cls");
+            std::cout << "connect succesful" << std::endl;
+            while (true)
+            {
+                std::cout << "Enter command: ";
+                std::cin >> SockControl;
+                for (int i = 0; i < TotalSocket2; i++)
+                {
+                    send(ClientSockets[i], (char *)&SockControl, sizeof(int), 0);
+                }
+            }
+        }
+        else
         {
-            send(ClientSockets[i], (char *)&SockControl, sizeof(int), 0);
+            Sleep(1000);
+            system("cls");
+            std::cout << "waiting connect" << std::endl;
         }
     }
 }
@@ -45,7 +59,7 @@ void Server(SOCKET &s, SOCKADDR_IN &sa, int SOCKET_COUNTERS, int TotalSockets)
         }
         else
         {
-            std::cout << "connection ok" << std::endl;
+            std::cout << std:: endl << "connection ok" << std::endl;
             ClientSockets[i] = ClientSocket;
             TotalSockets++;
             TotalSocket2 = TotalSockets;

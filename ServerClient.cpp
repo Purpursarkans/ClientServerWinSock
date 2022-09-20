@@ -25,8 +25,11 @@ int main()
 
     sockInit();
 
+    std::cout << "select work mode:" << std::endl;
+
     char c;
     std::cout << "s - server\nc - client" << std::endl;
+    std::cout << ">> ";
     std::cin >> c;
 
     if (c == 'c') { Client(s, sa); }
