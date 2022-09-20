@@ -9,21 +9,18 @@
 int SockControl = 1;
 
 SOCKET *ClientSockets;
+int TotalSocket2;
 
-struct sdata
-{
-    SOCKET *ClientSockets2;
-    int TotalSocket2;
-};
-
-void CommandSend(sdata data)
+void CommandSend()
 {
     while (true)
     {
-        for (int i = 0; i < data.TotalSocket2; i++)
+        std::cout << "Enter command: ";
+        std::cin >> SockControl;
+        for (int i = 0; i < TotalSocket2; i++)
         {
-            std::cout << "Enter command: ";
-            std::cin >> SockControl;
+            send(ClientSockets[i], (char *)&SockControl, sizeof(int), 0);
+            std::cout << ClientSockets[i] << std::endl;
         }
     }
 }
@@ -39,25 +36,22 @@ void Server(SOCKET &s, SOCKADDR_IN &sa, int SOCKET_COUNTERS, int TotalSockets)
     SOCKADDR_IN ClientAddr;
     int ClientAddrSize = sizeof(ClientAddr);
 
+    CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)CommandSend, NULL, NULL, NULL);
+
     for (int i = 0; i < SOCKET_COUNTERS; i++)
     {
         ClientSocket = accept(s, (sockaddr *)&ClientAddr, &ClientAddrSize);
         if (ClientSocket == 0)
         {
             std::cout << "Error #2\n";
+            exit(1);
         }
         else
         {
             std::cout << "connection ok" << std::endl;
             ClientSockets[i] = ClientSocket;
             TotalSockets++;
-
-            sdata data;
-
-            data.ClientSockets2 = ClientSockets;
-            data.TotalSocket2 = TotalSockets;
-
-            CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)CommandSend, (LPVOID)(&data), NULL, NULL);
+            TotalSocket2 = TotalSockets;
         }
     }
     delete[] ClientSockets;
