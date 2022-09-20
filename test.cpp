@@ -1,5 +1,8 @@
 #include "head.hpp"
 
+const int SOCKET_COUNTER = 5;
+int TotalSocket = 0;
+
 SOCKET s;
 WSADATA ws;
 SOCKADDR_IN sa;
@@ -27,7 +30,7 @@ int main()
     std::cin >> c;
 
     if (c == 'c') { Client(s, sa); }
-    if (c == 's') { Server(s, sa); }
+    if (c == 's') { Server(s, sa, SOCKET_COUNTER, TotalSocket); }
 
     system("pause");
     return 0;
