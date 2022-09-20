@@ -17,9 +17,7 @@ void Client(SOCKET &s, SOCKADDR_IN &sa)
 
     while(true)
     {
-        debug;
         recv(s, (char *)&SockControl, sizeof(int), NULL);
-        debug;
         switch(SockControl)
         {
             case 1:

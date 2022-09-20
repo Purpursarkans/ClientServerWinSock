@@ -24,7 +24,6 @@ void CommandSend(sdata data)
         {
             std::cout << "Enter command: ";
             std::cin >> SockControl;
-            std::cout << (send(data.ClientSockets2[i], (char *)&SockControl, sizeof(int), 0)) << std::endl;
         }
     }
 }
